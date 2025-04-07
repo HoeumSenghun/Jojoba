@@ -54,7 +54,7 @@ function getProductImage($image) {
     } elseif ($image && file_exists('uploads/products/' . $image)) {
         return 'uploads/products/' . $image;
     }
-    return 'assets/images/product-placeholder.jpg';
+    return 'assets/images/image.jpg';
 }
 
 // Get category image URL
@@ -64,6 +64,6 @@ function getCategoryImage($image) {
     } elseif ($image && file_exists('uploads/categories/' . $image)) {
         return 'uploads/categories/' . $image;
     }
-    return 'assets/images/category-placeholder.jpg';
+    return 'assets/images/image.jpg';
 }
 

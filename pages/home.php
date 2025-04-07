@@ -3,7 +3,7 @@ $pageTitle = 'Home';
 require_once 'includes/header.php';
 
 // Get featured products
-$stmt = $pdo->prepare("SELECT * FROM products WHERE featured = 1 LIMIT 8");
+$stmt = $pdo->prepare("SELECT * FROM products WHERE featured = 1 LIMIT 15");
 $stmt->execute();
 $featuredProducts = $stmt->fetchAll();
 
@@ -14,7 +14,7 @@ $categories = $stmt->fetchAll();
 ?>
 
 <!-- Hero Section -->
-<section class="bg-primary-100 rounded-lg py-12 px-4 md:px-8 mb-12">
+<section class="bg-primary rounded-lg py-12 px-4 md:px-8 mb-12">
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-8 md:mb-0">
             <h1 class="text-4xl md:text-5xl font-bold text-primary-800 mb-4">Natural Beauty with Jojoba</h1>
@@ -25,7 +25,7 @@ $categories = $stmt->fetchAll();
             </div>
         </div>
         <div class="md:w-1/2">
-            <img src="/assets/images/hero-image.jpg" alt="Jojoba Beauty Products" class="rounded-lg shadow-lg">
+            <img src="../assets/images/image.jpg" alt="Jojoba Beauty Products" class="rounded-lg shadow-lg">
         </div>
     </div>
 </section>
@@ -62,11 +62,11 @@ $categories = $stmt->fetchAll();
         <a href="/products" class="text-primary-600 hover:text-primary-700 font-medium">View All</a>
     </div>
     
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <?php foreach ($featuredProducts as $product): ?>
         <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
             <a href="/product?id=<?= $product['id'] ?>">
-                <div class="h-56 overflow-hidden">
+                <div class="h-48 sm:h-56 overflow-hidden">
                     <img src="<?= getProductImage($product['image']) ?>" 
                          alt="<?= $product['name'] ?>" 
                          class="w-full h-full object-cover transition duration-300 hover:scale-105">
@@ -78,7 +78,7 @@ $categories = $stmt->fetchAll();
                 </a>
                 <p class="text-gray-600 text-sm mb-3 line-clamp-2"><?= $product['short_description'] ?></p>
                 <div class="flex justify-between items-center">
-                    <span class="text-primary-700 font-bold"><?= formatPrice($product['price']) ?></span>
+                    <span class="text-primary-700 font-bold"><?= formatPrice($product['price']) ?>$</span>
                     <form action="/actions/add-to-cart.php" method="post">
                         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                         <input type="hidden" name="quantity" value="1">
